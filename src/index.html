@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Capcitor getUserMedia Test</title>
+    <style>
+      video {
+        background: #222;
+        margin: 2rem 0 20px 0;
+        --width: 100%;
+        width: var(--width);
+        height: calc(var(--width) * 0.75);
+      }
+    </style>
+  </head>
+  <body>
+    <video autoplay playsinline muted></video>
+
+    <!-- <button id="showVideo">Open camera</button> -->
+
+    <script async>
+      document.addEventListener("DOMContentLoaded", async (event) => {
+        const constraints = {
+          audio: false,
+          video: {
+            width: { min: 360, ideal: 640, max: 1920 },
+            height: { min: 240, ideal: 480, max: 1080 },
+            facingMode: { exact: "environment" },
+          },
+        };
+
+        try {
+            const stream = await navigator?.mediaDevices?.getUserMedia(constraints);
+            const video = document.querySelector("video");
+            video.srcObject = stream;
+        } catch (e) {
+            console.error(e);
+        }
+      });
+    </script>
+  </body>
+</html>

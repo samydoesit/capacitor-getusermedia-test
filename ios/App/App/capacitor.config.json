@@ -1,0 +1,6 @@
+{
+	"appId": "com.cap.test.getusermedia",
+	"appName": "capacitor-getusermedia-test",
+	"webDir": "src",
+	"bundledWebRuntime": false
+}
